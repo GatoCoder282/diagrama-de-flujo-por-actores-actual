@@ -73,23 +73,23 @@
   <div id="stage">
     <div id="diagram" class="mermaid">
 flowchart TD
-    T["Ticket recibido<br/>codigo, URL/fuente, formato esperado"] --> C
+    T["Ticket recibido<br/>codigo, URL/fuente,<br/>formato esperado"] --> C
 
     subgraph ACTOR_TICKET["Sistema de tickets"]
         T
     end
 
     subgraph ACTOR_DEV["Desarrollador externo"]
-        C{"Clasificacion manual<br/>tipo de descarga / categoria estructural"}
-        C -->|descarga| E1["Escritura del robot de descarga"]
-        C -->|conversion| E2["Escritura del robot de conversion"]
-        R1["Registro en configuracion compartida"]
+        C{"Clasificacion manual<br/>tipo de descarga /<br/>categoria estructural"}
+        C -->|descarga| E1["Escritura del robot<br/>de descarga"]
+        C -->|conversion| E2["Escritura del robot<br/>de conversion"]
+        R1["Registro en<br/>configuracion<br/>compartida"]
         E1 --> R1
         E2 --> R1
     end
 
     subgraph ACTOR_TESTS["Suite de pruebas automatizadas"]
-        P["Ejecucion de pruebas dinamicas<br/>forma y tipos, no contenido real"]
+        P["Ejecucion de<br/>pruebas dinamicas<br/>forma y tipos,<br/>no contenido real"]
         R1 --> P
         P -->|falla| E1
         P -->|falla| E2
@@ -98,20 +98,20 @@ flowchart TD
     subgraph ACTOR_RUNTIME["Motor de ejecucion"]
         X1["run_download.py"]
         X2["run_conversion.py"]
-        P -->|aprueba, rama descarga| X1
-        P -->|aprueba, rama conversion| X2
+        P -->|aprueba<br/>descarga| X1
+        P -->|aprueba<br/>conversion| X2
         X1 --> AF
     end
 
     subgraph ACTOR_HUMANO["Validador humano"]
-        V["Validacion manual del resultado<br/>solo conformidad estructural"]
+        V["Validacion manual<br/>del resultado<br/>solo conformidad<br/>estructural"]
         X2 --> V
     end
 
     subgraph ACTOR_AIRFLOW["Apache Airflow"]
-        AF["Orquestacion periodica<br/>idempotencia - sin estado - XCom acotado"]
+        AF["Orquestacion periodica<br/>idempotencia<br/>sin estado<br/>XCom acotado"]
         V --> AF
-        AF --> FIN["Entrega al repositorio analitico"]
+        AF --> FIN["Entrega al<br/>repositorio analitico"]
     end
 
     style ACTOR_DEV fill:#FEF3C7,stroke:#D9A521
