@@ -87,8 +87,8 @@ flowchart TD
 
     subgraph ACTOR_DEV["Desarrollador externo"]
         C{"Clasificacion<br/>manual<br/>tipo y categoria"}
-        C -->|descarga| E1["Escritura del<br/>robot de<br/>descarga"]
-        C -->|conversion| E2["Escritura del<br/>robot de<br/>conversion"]
+        C -->|extraccion| E1["Escritura del<br/>robot de<br/>extraccion"]
+        C -->|transformacion| E2["Escritura del<br/>robot de<br/>transformacion"]
         R1["Registro en<br/>configuracion<br/>compartida"]
         E1 --> R1
         E2 --> R1
